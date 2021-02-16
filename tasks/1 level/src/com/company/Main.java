@@ -1,88 +1,98 @@
-//TODO:
-// 1) создать сканер номера задач
-// 2) сделать ввод начальных данных для каждой задачи
+
 
 package com.company;
-
-import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        int a,b,c;
-        System.out.println ("Введите номер задачи (от 1 до 10) и 0 для выхода");
-        Scanner scanner = new Scanner (System.in);
-        int n = scanner.nextInt();
-        while (n!=0) {
-            switch (n){
-                case (1):
-                    System.out.println("Введите число: ");
-                    a = scanner.nextInt();
-                    System.out.println(task1.convert(a));
-                    break;
-                case (2):
-                    System.out.println("Введите числa: ");
-                    a = scanner.nextInt();
-                    b=scanner.nextInt();
-                    System.out.println(task2.points(a,b));
-                    break;
-                case (3):
-                    System.out.println("Введите числa: ");
-                    a = scanner.nextInt();
-                    b=scanner.nextInt();
-                    c=scanner.nextInt();
-                    System.out.println(task3.footballPoints(a,b,c));
-                    break;
-                case(4):
-                    System.out.println("Введите числo: ");
-                    a = scanner.nextInt();
-                    System.out.println(task4.divisibleByFive(a));
-                    break;
-                case(5):
-                    System.out.println("Введите true или false: ");
-                    boolean alog = scanner.nextBoolean();
-                    boolean blog = scanner.nextBoolean();
-                    System.out.println(task5.and(alog ,blog ));
-                    break;
-                case(6):
-                    System.out.println("Введите числa: ");
-                    a = scanner.nextInt();
-                    b=scanner.nextInt();
-                    c=scanner.nextInt();
-                    System.out.println(task6.howManyWalls(a,b,c));
-                    break;
-                case(7):
-                    System.out.println("Введите число: ");
-                    a = scanner.nextInt();
-                    System.out.println(task7.squared(a));
-                    break;
-                case(8):
-                    System.out.println("Введите числa: ");
-                    float a1 = scanner.nextFloat();
-                    float b1 = scanner.nextFloat();
-                    float c1 = scanner.nextFloat();
-                    System.out.println(task8.profitableGamble(a1,b1,c1));
-                    break;
-                case(9):
-                    System.out.println("Введите числa: ");
-                    a = scanner.nextInt();
-                    b=scanner.nextInt();
-                    System.out.println(task9.frames(a,b));
-                    break;
-                case(10):
-                    System.out.println("Введите числa: ");
-                    a = scanner.nextInt();
-                    b=scanner.nextInt();
-                    System.out.println(task10.mod(a,b));
-                    break;
-                default:
-                    System.out.println("Try something else(1<=n<=10)");
-                }
-            System.out.println ("Введите номер задачи (от 1 до 10) и 0 для выхода");
-            n=scanner.nextInt();
-
-            }
         }
 
+
+
+
+    //Напишите функцию, которая принимает целое число минут и преобразует его в секунды.
+    public static int convert (int a){
+        return (60*a);
+    }
+    /*Вы подсчитываете очки за баскетбольный матч, учитывая количество забитых 2-х и 3-х очков,
+находите окончательные очки для команды и возвращаете это значение.
+ */
+    public static int points (int a, int b){
+        return (a*2+3*b);
+    }
+    /* Создайте функцию, которая принимает количество побед, ничьих и поражений и вычисляет количество очков, набранных футбольной командой на данный момент.
+
+выигрыш – получают 3 очка
+ничья – получают 1 очко
+проигрыш – получают 0 очков
+*/
+    public static int footballPoints (int a, int b, int c) {
+        return (a*3+b*1+c*0);
+    }
+    /* Создайте функцию, которая возвращает true, если целое число равномерно делится на 5, и false
+ в противном случае.
+ */
+    public static boolean divisibleByFive (int n) {
+        return (n % 5 == 0);
+    }
+    /* В Java есть логический оператор &&. Оператор && принимает два логических значения и возвращает true,
+если оба значения истинны.
+
+Рассмотрим a && b:
+
+a проверяется, является ли оно истинным или ложным.
+Если a равно false, возвращается false.
+b проверяется, является ли оно истинным или ложным.
+Если b имеет значение false, возвращается значение false.
+В противном случае возвращается true (поскольку и a, и b, следовательно, истинны ).
+Оператор && вернет true только для true && true.
+
+Создайте функцию с помощью оператора&&.
+*/
+    public static boolean and (boolean a, boolean b) {
+        return (a && b);
+    }
+    /*У меня есть ведро с большим количеством темно-синей краски, и я хотел бы покрасить как
+можно больше стен. Создайте функцию, которая возвращает количество полных стен, которые я могу покрасить,
+прежде чем мне нужно будет отправиться в магазины, чтобы купить еще.
+
+n - это количество квадратных метров, которые я могу нарисовать.
+w и h-это ширина и высота одной стены в метрах.
+
+*/
+    public static int howManyWalls (int n, int w, int h) {
+        return (n/(w*h));
+    }
+    /*Исправьте код, чтобы решить эту задачу (только синтаксические ошибки). Посмотрите
+на приведенные ниже примеры, чтобы получить представление о том, что должна делать эта функция.
+Код:
+public class Challenge {
+	public static int squaed(int b) {
+		retun a * a
+  }
+}
+
+
+ */
+    public static int squared (int a) {
+        return a * a;
+    }
+    /*Создайте функцию, которая принимает три аргумента prob, prize, pay и возвращает true, если
+ prob * prize > pay; в противном случае возвращает false.
+ */
+    public static boolean profitableGamble(float prob, float prize, float pay) {
+        return (prob * prize > pay);
+    }
+    //Создайте метод, который возвращает количество кадров, показанных за заданное количество
+// минут для определенного FPS.
+    public static int frames (int a, int b) {
+        return a*b*60;
+    }
+    //Создайте функцию, которая будет работать как оператор модуля % без использования оператора модуля.
+// Оператор модуля-это способ определения остатка операции деления.
+// Вместо того чтобы возвращать результат деления, операция по модулю возвращает остаток целого числа.
+    public static int mod (int a, int b) {
+        return (a - (a / b)*b);
+    }
 
 }
