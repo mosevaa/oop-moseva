@@ -1,3 +1,4 @@
-/lab1/out/
-/lab1/.idea
-lab1.iml
+/lab?/out/
+/lab?/.idea
+*.iml
+.idea/
