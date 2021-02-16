@@ -1,4 +1,3 @@
-/lab?/out/
-/lab?/.idea
+out/
 *.iml
 .idea/
