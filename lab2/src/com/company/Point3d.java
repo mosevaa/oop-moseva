@@ -1,8 +1,6 @@
 package com.company;
 //трёхмерный класс точки
 public class Point3d extends Point2d {
-    private double xCrd; //координата x
-    private double yCrd; //координата y
     private double zCrd; //координата z
 
     //конструктор инициализации
@@ -28,7 +26,7 @@ public class Point3d extends Point2d {
 
     //сравнение двух объектов
     public boolean isEquals (Point3d obj) {
-        return this.xCrd == obj.xCrd && this.yCrd == obj.yCrd && this.zCrd == obj.zCrd;
+        return this.getX() == obj.getX() && this.getY() == obj.getY() && this.zCrd == obj.zCrd;
     }
 
     //метод для вычисления расстояния
