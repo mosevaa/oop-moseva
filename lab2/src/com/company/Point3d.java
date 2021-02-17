@@ -33,17 +33,8 @@ public class Point3d extends Point2d {
 
     //метод для вычисления расстояния
     public double distanceTo (Point3d obj){
-        //координаты точек
-        double x1 = this.xCrd;
-        double y1 = this.yCrd;
-        double z1 = this.zCrd;
-        double x2 = obj.xCrd;
-        double y2 = obj.yCrd;
-        double z2 = obj.zCrd;
-
         //вычисление расстояния
-        double l = Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2) + Math.pow((z2 - z1), 2));
-        int res = (int) Math.round(l*100);
-        return (double) res / 100;
+        double l = Math.sqrt(Math.pow((this.getX() - obj.getX()), 2) + Math.pow((this.getY() - obj.getY()), 2) + Math.pow((this.getZ() - obj.getZ()), 2));
+        return l;
     }
 }
