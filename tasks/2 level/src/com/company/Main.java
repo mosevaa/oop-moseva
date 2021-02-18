@@ -1,10 +1,12 @@
 package com.company;
 
+import java.util.Locale;
+
 public class Main {
 
     public static void main(String[] args) {
-        int[] mas = {44, 32, 86, 19};
-        System.out.println (differenceMaxMin(mas));
+        //int[] mas = {44, 32, 86, 19};
+        System.out.println (sameAscii("EdAbIt", "EDABIT"));
     }
     //1.Теша шел по прямой улице, по обеим сторонам которой стояло ровно n одинаковых домов.
     // Номера домов на улице выглядят так:
@@ -65,12 +67,28 @@ public class Main {
 
     // 6. Создайте метод, который принимает строку в качестве аргумента и возвращает
     // ее в обратном порядке.
+    public static String reverseString (String s){
+        String s_reverse = "";
+        for (int i =  s.length() - 1; i >= 0; i--) {
+            char sym = s.charAt(i);
+            s_reverse = s_reverse + sym;
+        }
+        return s_reverse;
+    }
 
 
 
     // 7. Вы наняли трех программистов и (надеюсь) платите им. Создайте функцию, которая
     // принимает три числа (почасовая заработная плата каждого программиста) и возвращает разницу между самым
     // высокооплачиваемым программистом и самым низкооплачиваемым.
+    public static int programmers (int a, int b, int c){
+        int max = a, min = a;
+        if (b > max) max = b;
+        if (b < min) min = b;
+        if (c > max) max = c;
+        if (c < min) min =c;
+        return (max - min);
+    }
 
 
 
@@ -83,12 +101,36 @@ public class Main {
     //- Верните false, если они не одинаковы.
     //- Строка может содержать любой символ.
     //- Если "x" и "o" отсутствуют в строке, верните true.
+    public static boolean getXO (String s) {
+        int number_o = 0, number_x = 0;
+        char[] s_arr = s.toCharArray();
+        for (int i = 0; i < s_arr.length; i++){
+            if (s_arr[i] == 'o' || s_arr[i] == 'O') number_o ++;
+            if (s_arr[i] == 'x' || s_arr[i] == 'X') number_x ++;
+        }
+        return (number_x == number_o);
+    }
 
     //9. Напишите функцию, которая находит слово "бомба" в данной строке. Ответьте "ПРИГНИСЬ!", если найдешь, в противном случае:"Расслабься, бомбы нет".
     //Примечание:
     //Строка "бомба" может появляться в разных случаях символов (например, в верхнем, нижнем регистре, смешанном).
+    public static String bomb (String S) {
+        String s = S.toLowerCase();
+        String other_s = "bomb";
+        if (s.indexOf("bomb") != -1) return "DUCK!";
+        else return "Relax, there's no bomb.";
+    }
 
-    //10. Возвращает true, если сумма значений ASCII первой строки совпадает с суммой значений ASCII второй строки, в противном случае возвращает false.
+    //10. Возвращает true, если сумма значений ASCII первой строки совпадает с суммой значений ASCII второй строки,
+    // в противном случае возвращает false.
+    public static boolean sameAscii (String s, String a) {
+        char[] s_arr = s.toCharArray();
+        char[] a_arr = a.toCharArray();
+        int s_sum = 0, a_sum = 0;
+        for (int i = 0; i < s_arr.length; i++) s_sum += (int) s_arr[i];
+        for (int i = 0; i < a_arr.length; i++) a_sum += (int) a_arr[i];
+        return a_sum == s_sum;
+    }
 
 
 
