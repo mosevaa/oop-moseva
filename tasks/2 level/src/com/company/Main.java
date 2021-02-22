@@ -6,26 +6,23 @@ public class Main {
 
     public static void main(String[] args) {
         //int[] mas = {44, 32, 86, 19};
-        System.out.println (sameAscii("EdAbIt", "EDABIT"));
+        System.out.println (oppositeHouse(5,46));
+        //System.out.println (nameShuffle());
+        //System.out.println (discount());
+        //System.out.println (differenceMaxMin());
+        //System.out.println (equal());
+        //System.out.println (reverseString());
+        //System.out.println (programmers());
+        //System.out.println (getXO());
+        //System.out.println (bomb());
+        //System.out.println (sameAscii());
     }
     //1.Теша шел по прямой улице, по обеим сторонам которой стояло ровно n одинаковых домов.
     // Номера домов на улице выглядят так:
     // Она заметила, что четные дома увеличиваются справа, а нечетные уменьшаются слева.
     // Создайте функцию, которая принимает номер дома и длину улицы n и возвращает номер дома на противоположной стороне.
     public static int oppositeHouse (int numb, int n) {
-        int[][] houses = new int[n][2];
-        for (int i = 0; i < n; i ++){
-            houses[i][0] = 2 * i + 1;
-            houses[i][1] = n * 2 - i *2;
-        }
-        if (numb % 2 != 0 ){
-            int i = (numb-1)/2;
-            return houses[i][1];
-        }
-        else {
-            int i = n - numb/2;
-            return houses[i][0];
-        }
+        return (2*n+1-numb);
     }
 
 
@@ -114,9 +111,9 @@ public class Main {
     //9. Напишите функцию, которая находит слово "бомба" в данной строке. Ответьте "ПРИГНИСЬ!", если найдешь, в противном случае:"Расслабься, бомбы нет".
     //Примечание:
     //Строка "бомба" может появляться в разных случаях символов (например, в верхнем, нижнем регистре, смешанном).
-    public static String bomb (String S) {
-        String s = S.toLowerCase();
-        String other_s = "bomb";
+    public static String bomb (String s) {
+         s = s.toLowerCase();
+        //String other_s = "bomb";
         if (s.indexOf("bomb") != -1) return "DUCK!";
         else return "Relax, there's no bomb.";
     }
@@ -130,6 +127,7 @@ public class Main {
         for (int i = 0; i < s_arr.length; i++) s_sum += (int) s_arr[i];
         for (int i = 0; i < a_arr.length; i++) a_sum += (int) a_arr[i];
         return a_sum == s_sum;
+    (char)s.charAt
     }
 
 
