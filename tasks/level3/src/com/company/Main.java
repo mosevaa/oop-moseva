@@ -13,10 +13,24 @@ public class Main {
     }
     }
 
+
+
+    //task 1
     public static Object[][] millionsRounding (Object[][] array){
         for (int i = 0; i < array.length; i++) {
             array[i][1] = Math.round((double)(int)array[i][1]/1000000)*1000000;
         }
     return array;
     }
+
+
+    //task2
+    public static double[] otherSides (int a) {
+        double[] res = {a*2, a*Math.sqrt(3)};
+        return res;
+    }
+
+
+    //task3
+    
 }
