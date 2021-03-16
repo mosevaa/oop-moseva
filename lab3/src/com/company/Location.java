@@ -28,14 +28,18 @@ public class Location
 
     @Override
     public boolean equals(Object o){
-        if (this == o) {
-            return true;
-        }
-
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass())  return false;
+        if (!(o instanceof Location)) return false;
+        Location loc = (Location) o;
+        return loc.xCoord == xCoord && loc.yCoord == yCoord;
     }
 
     @Override
     public int hashCode() {
-        return Object.hash(xCoord,yCoord);
+        int result = 17;
+        result = 31 * result + xCoord;
+        result = 31 * result + yCoord;
+        return result;
     }
 }
