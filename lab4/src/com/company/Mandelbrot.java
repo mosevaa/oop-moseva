@@ -15,16 +15,26 @@ public class Mandelbrot  extends FractalGenerator {
     @Override
     public int numIterations(double x, double y) {
         int iteration = 0;
+
+
         double z_real = 0;
         double z_imaginary = 0;
-        while ((iteration < MAX_ITERATIONS) && (z_real*z_real+z_imaginary*z_imaginary < 4)) {
-            double z_real_new = z_real*z_real - z_imaginary*z_imaginary+x;
-            double z_imaginary_new = z_real*z_imaginary +y;
-            z_imaginary=z_imaginary_new;
-            z_real=z_real_new;
-            iteration+=1;
+
+        while (iteration < MAX_ITERATIONS && z_real * z_real + z_imaginary * z_imaginary < 4)
+        {
+            double z_realUpdated = z_real * z_real - z_imaginary * z_imaginary + x;
+            double z_imaginaryUpdated = 2 * z_real * z_imaginary + y;
+            z_real = z_realUpdated;
+            z_imaginary = z_imaginaryUpdated;
+            iteration += 1;
         }
-        if (iteration==MAX_ITERATIONS) return -1;
+
+
+        if (iteration == MAX_ITERATIONS)
+        {
+            return -1;
+        }
+
         return iteration;
     }
 }

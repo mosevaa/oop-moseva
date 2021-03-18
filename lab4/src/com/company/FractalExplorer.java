@@ -14,6 +14,7 @@ public class FractalExplorer {
     public FractalExplorer (int display_size) {
         size = display_size;
 
+
         range = new Rectangle2D.Double();
         fractal = new Mandelbrot();
         fractal.getInitialRange(range);
@@ -50,9 +51,9 @@ public class FractalExplorer {
 
                 if (iterations == -1) jDisplay.drawPixel(x,y,0);
                 else {
-                    float hue = 0.7f + (float) iterations / 200f;
+                    float hue = 0.7f + (float) iterations / (float) Math.random() / 200f * (float) Math.random();
                     int rgbColor = Color.HSBtoRGB(hue, 1f, 1f);
-                    jDisplay.drawPixel(x,y,rgbColor);
+                    jDisplay.drawPixel(x, y, rgbColor);
                 }
             }
         }
