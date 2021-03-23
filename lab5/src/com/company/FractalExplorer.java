@@ -13,8 +13,6 @@ public class FractalExplorer {
 
     public FractalExplorer (int display_size) {
         size = display_size;
-
-
         range = new Rectangle2D.Double();
         fractal = new Mandelbrot();
         fractal.getInitialRange(range);
@@ -28,14 +26,30 @@ public class FractalExplorer {
         frame.add(jDisplay, BorderLayout.CENTER);
 
         JButton button = new JButton("Reset");
-        frame.add(button, BorderLayout.SOUTH);
-        MyActionListener clearAction = new MyActionListener();
+        ResetButtonHandler clearAction = new ResetButtonHandler();
         button.addActionListener(clearAction);
 
         MyMouseListener mouse = new MyMouseListener();
         jDisplay.addMouseListener(mouse);
 
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+
+        String[] items = {"Mandelbrot", "Tricorn", "BurningShip"};
+        JComboBox comboBox = new JComboBox(items);
+
+        JLabel label = new JLabel("Fractal:");
+        JPanel panelBox = new JPanel();
+        panelBox.add(label);
+        panelBox.add(comboBox);
+        frame.add(panelBox, BorderLayout.NORTH);
+
+        ChooseButtonHandler chooseAction = new ChooseButtonHandler();
+        comboBox.addActionListener(chooseAction);
+
+        JButton saveButton = new JButton("Save Image");
+        
+
+
 
         frame.pack();
         frame.setVisible(true);
@@ -60,9 +74,30 @@ public class FractalExplorer {
         jDisplay.repaint();
     }
 
-    public class MyActionListener implements ActionListener {
+    public class ResetButtonHandler implements ActionListener {
         @Override
         public void actionPerformed (ActionEvent e) {
+            fractal.getInitialRange(range);
+            drawFractal();
+        }
+
+
+    }
+
+    public class ChooseButtonHandler implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JComboBox combo = (JComboBox)e.getSource();
+            String name = (String) combo.getSelectedItem();
+            if (name == "Mandelbrot"){
+                fractal = new Mandelbrot();
+            }
+            if (name == "Tricorn") {
+                fractal = new Tricorn();
+            }
+            if (name == "BurningShip") {
+                fractal = new BurningShip();
+            }
             fractal.getInitialRange(range);
             drawFractal();
         }
