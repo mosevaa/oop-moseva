@@ -23,7 +23,7 @@ public class Tricorn extends FractalGenerator{
         while (iteration < MAX_ITERATIONS && z_real * z_real + z_imaginary * z_imaginary < 4)
         {
             double z_realUpdated = z_real * z_real - z_imaginary * z_imaginary + x;
-            double z_imaginaryUpdated = -2 * z_real * z_imaginary + y;
+            double z_imaginaryUpdated = -2* z_real * z_imaginary + y;
             z_real = z_realUpdated;
             z_imaginary = z_imaginaryUpdated;
             iteration += 1;

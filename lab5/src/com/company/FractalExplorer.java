@@ -1,9 +1,14 @@
 package com.company;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class FractalExplorer {
     private int size;
@@ -25,9 +30,9 @@ public class FractalExplorer {
 
         frame.add(jDisplay, BorderLayout.CENTER);
 
-        JButton button = new JButton("Reset");
+        JButton resetButton = new JButton("Reset");
         ResetButtonHandler clearAction = new ResetButtonHandler();
-        button.addActionListener(clearAction);
+        resetButton.addActionListener(clearAction);
 
         MyMouseListener mouse = new MyMouseListener();
         jDisplay.addMouseListener(mouse);
@@ -47,8 +52,13 @@ public class FractalExplorer {
         comboBox.addActionListener(chooseAction);
 
         JButton saveButton = new JButton("Save Image");
-        
+        SaveImageButton saveAction = new SaveImageButton();
+        saveButton.addActionListener(saveAction);
 
+        JPanel panelButtons = new JPanel();
+        panelButtons.add(resetButton);
+        panelButtons.add(saveButton);
+        frame.add(panelButtons, BorderLayout.SOUTH);
 
 
         frame.pack();
@@ -100,6 +110,29 @@ public class FractalExplorer {
             }
             fractal.getInitialRange(range);
             drawFractal();
+        }
+    }
+
+    public class SaveImageButton implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JFileChooser chooser = new JFileChooser();
+            FileFilter filter = new FileNameExtensionFilter("PNG Images", "png");
+            chooser.setFileFilter(filter);
+            chooser.setAcceptAllFileFilterUsed(false);
+
+            int result = chooser.showSaveDialog(jDisplay);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                File dir = chooser.getSelectedFile();
+                String dir_string = dir.toString();
+                try{
+                    BufferedImage image = jDisplay.getImage();
+                    ImageIO.write(image, "png", dir);
+                }
+                catch(Exception exception){
+                    JOptionPane.showMessageDialog(chooser, exception.getMessage(),"Can not save image", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
     }
 
