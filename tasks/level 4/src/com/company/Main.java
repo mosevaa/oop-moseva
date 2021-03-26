@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 	int[] array = {9, 4, 26, 26, 0, 0, 5, 20, 6, 25, 5};
-	System.out.print(code(149));
+	System.out.print(memeSum(1222, 30277));
     }
 
     //task1
@@ -84,19 +84,56 @@ public class Main {
 
     //task8
     public static String commonLastVowel (String s) {
-        Map<Character,Integer> common = new HashMap<>();
+        int newValue,max = 0;
+        String result = "";
+        Map<Character,Integer> common = new HashMap<Character,Integer>();
         String[] words = s.toLowerCase().split(" ");
-        List<String> vowel = {"e","y","u","i","o","a"};
+        List<Character> vowel = Arrays.asList('e','y','u','i','o','a');
         for (String word:words){
             for (int i = word.length(); i >= 0; i--){
                 if (vowel.contains(word.charAt(i))){
-
+                    if (common.containsKey(word.charAt(i))) {
+                        newValue = common.get(word.charAt(i))+1;
+                    }
+                    else {
+                        newValue = 1;
+                    }
+                    common.put(word.charAt(i), newValue);
+                    break;
                 }
             }
         }
+        for (Map.Entry<Character,Integer> entry : common.entrySet()){
+            if (max < entry.getValue()) {
+                max = entry.getValue();
+                result = entry.getKey().toString();
+            }
+        }
+        return result;
     }
 
     //task9
+    public static int memeSum (int a, int b){
+        StringBuilder result = new StringBuilder();
+        while (a % 10 != 0 || b % 10 != 0) {
+            int c = a % 10 + b % 10;
+            result.insert(0, c);
+            a/=10;
+            b/=10;
+        }
+        return(Integer.parseInt(result.toString()));
+    }
 
     //task10
+    public static String unrepeated ( String s) {
+        ArrayList<Character> chars = new ArrayList<>();
+        StringBuilder result = new StringBuilder();
+        for (char c: s.toCharArray()) {
+            if (!chars.contains(c)) {
+                chars.add(c);
+                result.append(c);
+            }
+        }
+        return result.toString();
+    }
 }
