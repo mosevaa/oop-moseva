@@ -6,6 +6,14 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
+        Object[][] array ={{"Nice", 942208},{"Abu Dhabi", 1482816},{"Naples", 2186853},{"Vatican City", 572}};
+        array = millionsRounding(array);
+        for (int i = 0; i < array.length; i ++) {
+            for (int j = 0; j < array[i].length; j ++) {
+                System.out.print(array[i][j]+" ");
+            }
+            System.out.print("\n");
+        }
     }
 
 

@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 	int[] array = {9, 4, 26, 26, 0, 0, 5, 20, 6, 25, 5};
-	System.out.print(memeSum(1222, 30277));
+	System.out.print(code(7977));
     }
 
     //task1
@@ -77,8 +77,18 @@ public class Main {
 
     //task7
     public static int code (int n){
-        StringBuilder string = new StringBuilder(Integer.toString(n)).reverse();
-        if (n - Integer.parseInt(string.toString()) > 0 ) return n - Integer.parseInt(string.toString());
+        ArrayList<Integer> digits = new ArrayList<Integer>();
+        while (n > 0 ) {
+            digits.add(n%10);
+            n/=10;
+        }
+        digits.sort(Collections.reverseOrder());
+
+        int newNum = 0;
+        for (int i = 0; i < digits.size(); i++) {
+            newNum += digits.get(i) * (int) Math.pow(10, i);
+        }
+        if (n-newNum > 0) return (n-newNum);
         else return 0;
     }
 
