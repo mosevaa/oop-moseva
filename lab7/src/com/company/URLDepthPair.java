@@ -2,15 +2,16 @@ package com.company;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.LinkedList;
 
 //класс, который хранит url и глубину, на которой находится этот сайт
 public class URLDepthPair {
     //поддерживаемый протокол
-    public final static String URL_PROTOCOL_PREFIX = "http://";
+    public final static String URL_PREFIX = "http://";
     //url адрес
-    private String url;
+    public String url;
     //глубина, на которой находится url
-    private int depth;
+    public int depth;
 
     public URLDepthPair (String url, int depth) {
         this.url = url;
@@ -48,5 +49,13 @@ public class URLDepthPair {
                 "url='" + url + '\'' +
                 ", depth=" + depth +
                 '}';
+    }
+
+    public boolean check(LinkedList<URLDepthPair> resultLink, URLDepthPair pair) {
+        boolean isAlready = true;
+        for (URLDepthPair c : resultLink)
+            if (c.getUrl().equals(pair.getUrl()))
+                isAlready=false;
+        return isAlready;
     }
 }
