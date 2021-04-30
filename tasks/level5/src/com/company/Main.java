@@ -1,18 +1,66 @@
 package com.company;
 
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
         String[] arr = {"cat", "create", "sat"};
-	    System.out.println (sameLetterPattern("FFFF", "ABCD"));
-	    System.out.println(digitsCount(1000));
-	    System.out.println(totalPoints(arr, "caster"));
-	    System.out.println(isNew(321));
-	    System.out.println(rearrange("Tesh3 th5e 1I lov2e way6 she7 j4ust i8s."));
-	    System.out.println(maxPossible(8732, 91255));
+	    //task1
+        System.out.println(sameLetterPattern("ABAB", "CDCD"));
+        System.out.println(sameLetterPattern("ABCBA", "BCDCB"));
+        System.out.println(sameLetterPattern("FFGG", "CDCD"));
+        System.out.println(sameLetterPattern("FFFF", "ABCD"));
+        System.out.println("-------------------------");
+        System.out.println(spiderVsFly("H3", "E2"));
+        System.out.println(spiderVsFly("A4", "B2"));
+        System.out.println(spiderVsFly("A4", "C2"));
+        System.out.println("-------------------------");
+        System.out.println(digitsCount(4666));
+        System.out.println(digitsCount(544));
+        System.out.println(digitsCount(121317) );
+        System.out.println(digitsCount(0));
+        System.out.println(digitsCount(12345) );
+        System.out.println("------------------------");
+        System.out.println(totalPoints(arr, "caster") );
+        String[] arr1 = {"trance", "recant"};
+        System.out.println(totalPoints(arr1, "recant"));
+        String[] arr2 = {"dote", "dotes", "toes", "set", "dot", "dots", "sted"};
+        System.out.println(totalPoints(arr2,  "tossed") );
+        System.out.println("------------------------");
+        int[]run1 = {1, 2, 3, 10, 11, 15};
+        int[]run2={5, 4, 2, 1};
+        int[] run3 = {3, 5, 7, 10, 15};
+        System.out.println(longestRun(run1));
+        System.out.println(longestRun(run2));
+        System.out.println(longestRun(run3));
+        System.out.println("----------------------");
+        String[] percents1 = {"95%", "83%", "90%", "87%", "88%", "93%"};
+        String[] percents2 = {"10%"};
+        String[] percents3 = {"53%", "79%"};
+        System.out.println(takeDownAverage(percents1));
+        System.out.println(takeDownAverage(percents2));
+        System.out.println(takeDownAverage(percents3));
+        System.out.println(rearrange("Tesh3 th5e 1I lov2e way6 she7 j4ust i8s."));
+        System.out.println(rearrange("the4 t3o man5 Happ1iest of6 no7 birt2hday steel8!"));
+        System.out.println(rearrange("is2 Thi1s T4est 3a"));
+        System.out.println(rearrange("4of Fo1r pe6ople g3ood th5e the2"));
+        System.out.println(rearrange(" "));
+        System.out.println("--------------------");
+        System.out.println(maxPossible(523, 76));
+        System.out.println(maxPossible(9132, 5564));
+        System.out.println(maxPossible(8732, 91255));
+        System.out.println("--------------------");
+        System.out.println(timeDifference("Los Angeles", "April 1, 2011 23:23", "Canberra") );
+        System.out.println(timeDifference("London", "July 31, 1983 23:01", "Rome") );
+        System.out.println(timeDifference("New York", "December 31, 1970 13:40", "Beijing"));
+        System.out.println("--------------------");
+        System.out.println(isNew(3));
+        System.out.println(isNew(30));
+        System.out.println(isNew(321));
+        System.out.println(isNew(123) );
+
     }
 
 
@@ -20,26 +68,26 @@ public class Main {
     public static boolean sameLetterPattern(String str1, String str2) {
         str1 = str1.toUpperCase();
         str2 = str2.toUpperCase();
-        int gap = 0;
-        gap = str1.charAt(0) - str2.charAt(0);
-        for (int i = 1; i < str1.toCharArray().length; i++) {
-            if (str1.charAt(0) - str2.charAt(0) != gap) return false;
+        int dif = str1.charAt(0)-str2.charAt(0);
+        for (int i=0;i<str1.length();++i) {
+            if(str1.charAt(i)-str2.charAt(i)!=dif)
+                return false;
         }
         return true;
     }
 
     //5.2
     public static String spiderVsFly(String str1, String str2) {
-        Dot spider = new Dot(str1.charAt(0),Integer.parseInt(Character.toString(str1.charAt(1))));
-        Dot butterFly = new Dot(str2.charAt(0),Integer.parseInt(Character.toString(str2.charAt(1))));
-        Dot.route=spider.getLetterString()+Integer.toString(spider.getLevel());
-        int distance=spider.getDistanceAndDir(butterFly)[0],dir=spider.getDistanceAndDir(butterFly)[1];
+        number2 spider = new number2(str1.charAt(0),Integer.parseInt(Character.toString(str1.charAt(1))));
+        number2 fly = new number2(str2.charAt(0),Integer.parseInt(Character.toString(str2.charAt(1))));
+        number2.result=spider.getLetter()+Integer.toString(spider.getLevel());
+        int distance=spider.getDistanceAndDir(fly)[0],dir=spider.getDistanceAndDir(fly)[1];
         if(spider.getLevel()==0)
-            spider.setLetter(butterFly.getLetterChar());
-        if(butterFly.getLevel()==0)
-            butterFly.setLetter(spider.getLetterChar());
-        if(spider.getLevel()> butterFly.getLevel() || distance > 2) { //h4 b3
-            while(spider.getLevel()>butterFly.getLevel()) {
+            spider.setLetter(fly.getLetterChar());
+        if(fly.getLevel()==0)
+            fly.setLetter(spider.getLetterChar());
+        if(spider.getLevel()> fly.getLevel() || distance > 2) { //h4 b3
+            while(spider.getLevel()>fly.getLevel()) {
                 spider.changeLevel(-1);
             }
             if(distance>2) {
@@ -48,25 +96,25 @@ public class Main {
                         spider.setLetter('A');
                     spider.changeLevel(-1);
                 }
-                spider.setLetter(butterFly.getLetterChar());
-                while(spider.getLevel()!=butterFly.getLevel()) {
+                spider.setLetter(fly.getLetterChar());
+                while(spider.getLevel()!=fly.getLevel()) {
                     spider.changeLevel(1);
                 }
             }else {
-                while(spider.getLetterChar()!=butterFly.getLetterChar()) {
+                while(spider.getLetterChar()!=fly.getLetterChar()) {
                     spider.changeLetter(dir);
                 }
             }
         }
         else {
-            while(spider.getLetterChar()!=butterFly.getLetterChar()) {
+            while(spider.getLetterChar()!=fly.getLetterChar()) {
                 spider.changeLetter(dir);
             }
-            while(spider.getLevel()!=butterFly.getLevel()) {
+            while(spider.getLevel()!=fly.getLevel()) {
                 spider.changeLevel(1);
             }
         }
-        return Dot.route;
+        return number2.result;
     }
 
     //5.3
@@ -103,36 +151,33 @@ public class Main {
     }
 
     //5.5
-    public static int longestRun(int[] nums) {
-        int currentRunIndex = 0;
-        boolean isCurrentRunPositive = true;
-        List<Integer> allLengths = new ArrayList<>(){{ add(1); }};
-
-        for (int i = 1; i < nums.length; i++) {
-            if ((nums[i] - nums[i - 1] == 1 && isCurrentRunPositive) ||
-                    (nums[i] - nums[i - 1] == -1 && !isCurrentRunPositive)) {
-
-                allLengths.set(currentRunIndex, allLengths.get(currentRunIndex) + 1);
-            } else {
-                isCurrentRunPositive = nums[i] - nums[i - 1] > 0;
-                currentRunIndex++;
-                allLengths.add(1);
+    public static int longestRun(int[] arr) {
+        int current=1, longest=1;
+        for (int i=1;i<arr.length;i++) {
+            if(arr[i]-1==arr[i-1] || arr[i]+1==arr[i-1]) {
+                current++;
+            }
+            else {
+                if(current>longest)
+                    longest=current;
+                current =1;
             }
         }
-
-        return allLengths.stream().max(Integer::compare).orElse(1);
-    }
+        if(current>longest)
+            longest=current;
+        return longest;
     }
 
     //5.6
-    public static int takeDownAverage(int[] percents) {
+    public static String takeDownAverage(String[] percents) {
         int sum = 0;
         for (int i = 0; i < percents.length; i ++) {
-            sum += percents[i];
+            int rate = Integer.parseInt(percents[i].substring(0,percents[i].length()-1));
+            sum +=rate;
         }
         double avg = sum / (double) percents.length;
         double newAvg = avg - 5;
-        return (int) Math.round(newAvg * (percents.length + 1) - sum);
+        return Integer.toString((int) Math.round(newAvg * (percents.length + 1) - sum))+"%";
     }
 
 
@@ -171,7 +216,6 @@ public class Main {
         }
 
         Collections.sort(digits2, Collections.reverseOrder());
-        System.out.println (digits2);
         Collections.reverse(digits1);
 
         for (int i = 0; i < digits1.size(); i ++) {
@@ -376,3 +420,75 @@ public class Main {
         return true;
     }
 }
+
+class number2 {
+    private char letter;
+    private int level;
+    public static String result;
+
+    public number2 (char letter, int level){
+        this.letter = letter;
+        this.level = level;
+    }
+
+    @Override
+    public String toString(){
+        return Character.toString(letter)+Integer.toString(level);
+    }
+
+    public String getLetter() {
+        return Character.toString(letter);
+    }
+    public char getLetterChar() {
+        return letter;
+    }
+    public int getLevel() {
+        return level;
+    }
+
+    public void changeLetter(int dir) {
+        letter+=dir;
+        if(letter-'A'>7)
+            letter-=8;
+        if(letter-'A'<0)
+            letter+=8;
+        result+="-"+this.toString();
+    }
+
+    public void setLetter(char ch) {
+        if (ch<='H' && ch>='A') {
+            letter=ch;
+        }
+    }
+
+    public void changeLevel(int fromTo) {// -1 in    1 out
+        level+=fromTo;
+
+        result+="-"+this.toString();
+    }
+
+    public int[] getDistanceAndDir(number2 dot) {
+        int distance=this.getLetterChar()-dot.getLetterChar() ,dir;
+        if(distance>0) {
+            if(distance<=4) {
+                dir = -1;
+            }
+            else {
+                dir = 1;
+                distance=8-distance;
+            }
+        }
+        else {
+            if(-distance<=4) {
+                distance*=-1;
+                dir =1;
+            }
+            else {
+                dir=-1;
+                distance = distance+8;
+            }
+        }
+        return new int[] {distance,dir};
+    }
+}
+
