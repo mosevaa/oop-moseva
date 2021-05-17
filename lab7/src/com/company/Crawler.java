@@ -49,7 +49,7 @@ public class Crawler {
                                     currentLink.append(line.charAt(i));
                                     i++;
                                 }
-                    }
+                            }
                             URLDepthPair newPair = new URLDepthPair(currentLink.toString(), current.depth + 1);
                             if (current.check(findLink, newPair) && current.check(viewedLink, newPair) && !current.url.equals(newPair.url))
                                 findLink.add(newPair);
@@ -67,13 +67,16 @@ public class Crawler {
     }
     public static void main(String[] args) {
 	// write your code here
-        String[] arg = new String[]{"https://natribu.org/ru","4"};
+        String[] arg = new String[]{"http://government.ru/","1"};
         try {
             start(arg[0], Integer.parseInt(arg[1]));
         } catch (NumberFormatException | IOException e) {
             System.out.println("usage: java crawler " + arg[0] + " " + arg[1]);
         }
 
-        
+
     }
 }
+
+
+
